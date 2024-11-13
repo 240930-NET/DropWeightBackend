@@ -1,6 +1,6 @@
-using DropWeight.Domain.Entities;
-using DropWeight.Infrastructure.Data;
-using DropWeight.Infrastructure.Repositories.Interfaces;
+using DropWeightBackend.Domain.Entities;
+using DropWeightBackend.Infrastructure.Data;
+using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace DropWeightBackend.Infrastructure.Repositories.Implementations;

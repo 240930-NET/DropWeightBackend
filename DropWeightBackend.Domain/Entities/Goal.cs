@@ -1,6 +1,6 @@
 using Microsoft.Identity.Client;
 
-namespace DropWeight.Domain.Entities;
+namespace DropWeightBackend.Domain.Entities;
 
 public class Goal {
 

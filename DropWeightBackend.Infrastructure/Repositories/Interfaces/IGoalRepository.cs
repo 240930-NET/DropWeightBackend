@@ -1,6 +1,6 @@
-using DropWeight.Domain.Entities;
+using DropWeightBackend.Domain.Entities;
 
-namespace DropWeight.Infrastructure.Repositories.Interfaces;
+namespace DropWeightBackend.Infrastructure.Repositories.Interfaces;
 
 public interface IGoalRepository {
 
