@@ -15,7 +15,7 @@ namespace DropWeight.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<User> GetByIdAsync(int userId)
+        public async Task<User> GetUserByIdAsync(int userId)
         {
             return await _context.Users
                 .Include(u => u.Workouts)
@@ -24,7 +24,7 @@ namespace DropWeight.Infrastructure.Repositories
                 .FirstOrDefaultAsync(u => u.UserId == userId);
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public async Task<IEnumerable<User>> GetAllUserAsync()
         {
             return await _context.Users
                 .Include(u => u.Workouts)
@@ -33,21 +33,21 @@ namespace DropWeight.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task AddAsync(User user)
+        public async Task AddUserAsync(User user)
         {
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(User user)
+        public async Task UpdateUserAsync(User user)
         {
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int userId)
+        public async Task DeleteUserAsync(int userId)
         {
-            var user = await GetByIdAsync(userId);
+            var user = await GetUserByIdAsync(userId);
             if (user != null)
             {
                 _context.Users.Remove(user);

@@ -6,10 +6,11 @@ namespace DropWeight.Infrastructure.Repositories
 {
     public interface IUserRepository
     {
-        Task<User> GetByIdAsync(int userId);
-        Task<IEnumerable<User>> GetAllAsync();
-        Task AddAsync(User user);
-        Task UpdateAsync(User user);
-        Task DeleteAsync(int userId);
+        Task<User> GetByUserIdAsync(int userId);
+        Task<IEnumerable<User>> GetAllUserAsync();
+        Task AddUserAsync(User user);
+        Task UpdateUserAsync(User user);
+        Task DeleteUserAsync(int userId);
     }
 }
+ 
