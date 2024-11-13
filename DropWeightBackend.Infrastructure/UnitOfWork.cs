@@ -1,4 +1,7 @@
 using DropWeight.Infrastructure.Data;
+using DropWeight.Domain.Entities;
+using DropWeight.Domain.Repositories;
+using DropWeight.Infrastructure.Repositories;
 
 namespace DropWeight.Infrastructure.UnitOfWork
 {
@@ -14,6 +17,9 @@ namespace DropWeight.Infrastructure.UnitOfWork
         public IUserRepository Users { get; }
         public IInstitutionRepository Institutions { get; }*/
 
+        public IWorkoutRepository Workouts { get; }
+        public IGeoSpatialRepository GeoSpatials { get; }
+
         public UnitOfWork(DropWeightContext context)
         {
             _context = context;
@@ -25,6 +31,9 @@ namespace DropWeight.Infrastructure.UnitOfWork
             Grades = new GradeRepository(_context);
             Users = new UserRepository(_context);
             Institutions = new InstitutionRepository(_context);*/
+
+            Workouts = new WorkoutRepository(_context);
+            GeoSpatials = new GeoSpatialRepository(_context);
         }
 
         public async Task<int> CompleteAsync()
