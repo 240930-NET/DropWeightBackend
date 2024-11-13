@@ -20,6 +20,9 @@ namespace DropWeight.Domain.Entities
         public int Reps { get; set; }
         public ICollection<GeoSpatial> GeoSpatials { get; set;}
 
+        // FK for User Model
+        public int UserId { get; set; }
+
         public Workout() {
             GeoSpatials = new Hashset<GeoSpatial>();
         }
