@@ -7,8 +7,8 @@ namespace DropWeight.Infrastructure.UnitOfWork
     public interface IUnitOfWork : IDisposable
     {
         // Repositories
-        IWorkoutRepository Classes { get; }
-        IGeoSpatialRepository Assignments { get; }
+        IWorkoutRepository Workouts { get; }
+        IGeoSpatialRepository GeoSpatials { get; }
 
         // Commit changes
         Task<int> CompleteAsync();
