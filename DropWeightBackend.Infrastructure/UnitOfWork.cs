@@ -1,10 +1,10 @@
-
+using DropWeight.Infrastructure.Data;
 
 namespace DropWeight.Infrastructure.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly DropWeightDbContext _context;
+        private readonly DropWeightContext _context;
 
         // Repositories
         //public IStudentRepository Students { get; }
@@ -14,7 +14,7 @@ namespace DropWeight.Infrastructure.UnitOfWork
         public IUserRepository Users { get; }
         public IInstitutionRepository Institutions { get; }*/
 
-        public UnitOfWork(DropWeightDbContext context)
+        public UnitOfWork(DropWeightContext context)
         {
             _context = context;
 

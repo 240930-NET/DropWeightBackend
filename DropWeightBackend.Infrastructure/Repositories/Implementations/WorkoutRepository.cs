@@ -5,6 +5,7 @@ using DropWeight.Domain.Entities;
 using DropWeight.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using GreaterGradesBackend.Domain.Enums;
+using DropWeight.Infrastructure.Data;
 
 
 namespace DropWeight.Infrastructure.Repositories
