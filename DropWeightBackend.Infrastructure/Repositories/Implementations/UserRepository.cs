@@ -1,10 +1,9 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using DropWeight.Domain.Entities;
-using DropWeight.Infrastructure.Data;
+using DropWeightBackend.Domain.Entities;
+using DropWeightBackend.Infrastructure.Data;
+using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 
-namespace DropWeight.Infrastructure.Repositories
+namespace DropWeightBackend.Infrastructure.Repositories.Implementations
 {
     public class UserRepository : IUserRepository
     {
@@ -15,7 +14,7 @@ namespace DropWeight.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<User> GetUserByIdAsync(int userId)
+        public async Task<User?> GetUserByIdAsync(int userId)
         {
             return await _context.Users
                 .Include(u => u.Workouts)

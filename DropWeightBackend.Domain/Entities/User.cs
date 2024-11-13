@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DropWeight.Domain.Entities
+namespace DropWeightBackend.Domain.Entities
 {
     public class User
     {
@@ -15,7 +14,7 @@ namespace DropWeight.Domain.Entities
 
         public ICollection<Workout> Workouts {get;set;} = new List<Workout>();
         public ICollection<Goal> Goals {get;set;} = new List<Goal>();
-        public ICollection<Nutrition> Nutritions = new List<Workout>();
+        public ICollection<Nutrition> Nutritions = new List<Nutrition>();
     }
 }
 

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using GreaterGradesBackend.Domain.Enums;
+using System.Text.Json.Serialization;
+using DropWeightBackend.Domain.Enums;
 
-namespace DropWeight.Domain.Entities
+namespace DropWeightBackend.Domain.Entities
 {
     public class Workout
     {
@@ -20,8 +21,11 @@ namespace DropWeight.Domain.Entities
         public int Reps { get; set; }
         public ICollection<GeoSpatial> GeoSpatials { get; set;}
 
+        public int UserId {get; set;} //FK
+        [JsonIgnore]
+        public required User User {get; set;} //Navigation Property
         public Workout() {
-            GeoSpatials = new Hashset<GeoSpatial>();
+            GeoSpatials = new HashSet<GeoSpatial>();
         }
         
     }

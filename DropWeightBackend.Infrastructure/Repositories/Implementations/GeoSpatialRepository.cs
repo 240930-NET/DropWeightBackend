@@ -1,12 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DropWeight.Domain.Entities;
-using DropWeight.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using DropWeight.Infrastructure.Data;
+using DropWeightBackend.Domain.Entities;
+using DropWeightBackend.Infrastructure.Data;
+using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 
-namespace DropWeight.Infrastructure.Repositories
+namespace DropWeightBackend.Infrastructure.Repositories.Implementations
 {
     public class GeoSpatialRepository : IGeoSpatialRepository
     {
@@ -17,7 +14,7 @@ namespace DropWeight.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<GeoSpatial> GetGeoSpatialByIdAsync(int geoSpatialId)
+        public async Task<GeoSpatial?> GetGeoSpatialByIdAsync(int geoSpatialId)
         {
             return await _context.GeoSpatials
                 .FirstOrDefaultAsync(g => g.GeoSpatialId == geoSpatialId);
