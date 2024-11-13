@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
-namespace DropWeight.Domain.Entities
+namespace DropWeightBackend.Domain.Entities
 {
     public class GeoSpatial
     {
@@ -13,6 +13,11 @@ namespace DropWeight.Domain.Entities
 
         [Required]
         public int Longitude { get; set; }
+
+        [Required]
+        public int WorkoutId {get; set; } //FK
+        [JsonIgnore]
+        public required Workout Workout {get; set;} //Navigation Property
 
         public GeoSpatial() {}
         

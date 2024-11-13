@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using DropWeight.Domain.Entities;
+using DropWeightBackend.Domain.Entities;
 
-namespace DropWeight.Infrastructure.Data
+namespace DropWeightBackend.Infrastructure.Data
 {
     public class DropWeightContext : DbContext
     {

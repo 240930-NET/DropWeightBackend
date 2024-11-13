@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DropWeight.Domain.Entities;
+using DropWeightBackend.Domain.Entities;
 
-namespace DropWeight.Domain.Repositories
+namespace DropWeightBackend.Infrastructure.Repositories.Interfaces
 {
     public interface IGeoSpatialRepository
     {
-        Task<GeoSpatial> GetGeoSpatialByIdAsync(int geoSpatialId);
+        Task<GeoSpatial?> GetGeoSpatialByIdAsync(int geoSpatialId);
         Task<IEnumerable<GeoSpatial>> GetAllGeoSpatialsAsync();
         Task<IEnumerable<GeoSpatial>> GetGeoSpatialsByWorkoutIdAsync(int workoutId);
         Task AddGeoSpatialAsync(GeoSpatial geoSpatial);

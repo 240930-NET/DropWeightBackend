@@ -1,4 +1,4 @@
-namespace GreaterGradesBackend.Domain.Enums
+namespace DropWeightBackend.Domain.Enums
 {
     public enum WorkoutType
     {
