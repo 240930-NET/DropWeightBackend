@@ -20,7 +20,18 @@ namespace DropWeightBackend.Infrastructure.Repositories.Implementations
                 .Include(u => u.Workouts)
                 .Include(u => u.Goals)
                 .Include(u => u.Nutritions)
+                .Include(u => u.WorkoutSchedules) 
                 .FirstOrDefaultAsync(u => u.UserId == userId);
+        }
+
+        public async Task<User?> GetUserByUsernameAsync(string username)
+        {
+            return await _context.Users
+                .Include(u => u.Workouts)
+                .Include(u => u.Goals)
+                .Include(u => u.Nutritions)
+                .Include(u => u.WorkoutSchedules) 
+                .FirstOrDefaultAsync(u => u.Username == username);  
         }
 
         public async Task<IEnumerable<User>> GetAllUserAsync()
@@ -29,9 +40,9 @@ namespace DropWeightBackend.Infrastructure.Repositories.Implementations
                 .Include(u => u.Workouts)
                 .Include(u => u.Goals)
                 .Include(u => u.Nutritions)
+                .Include(u => u.WorkoutSchedules) 
                 .ToListAsync();
         }
-
         public async Task AddUserAsync(User user)
         {
             await _context.Users.AddAsync(user);
