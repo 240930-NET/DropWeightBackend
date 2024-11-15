@@ -18,7 +18,7 @@ public class GoalRepository : IGoalRepository{
         return await _context.Goals.ToListAsync();
     }
 
-    public async Task<Goal> GetGoalById(int id) {
+    public async Task<Goal?> GetGoalById(int id) {
         return await _context.Goals.FindAsync(id);
     }
     

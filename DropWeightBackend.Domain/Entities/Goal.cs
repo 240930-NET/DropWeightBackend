@@ -12,20 +12,20 @@ public class Goal {
 
     [Required]
     public GoalType Type { get; set; } = GoalType.Custom;
+    public string? GoalName {get; set;}
+    public double? Progress {get; set;}
 
-    [Required]
-    public string Description {get; set; } = "";
+    public bool? IsAchieved {get; set;}
+    public string? Description {get; set; }
 
-    [Required]
-    public bool Status;
-
-    public double? TargetWeight { get; set; }
-    public double? CurrentWeight { get; set; }
+    public double? StartingValue {get; set;}
+    public double? TargetValue { get; set; }
+    public double? CurrentValue { get; set; }
 
     //Foreign Key
     public int UserId {get; set;}
 
     [JsonIgnore]
-    public required User User {get; set;} //Navigation Property
+    public User User {get; set;} //Navigation Property
 
 }

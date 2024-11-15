@@ -4,6 +4,5 @@ public enum GoalType {
     Weight,
     Strength,
     MileTime,
-    Calories,
     Custom
 } 
