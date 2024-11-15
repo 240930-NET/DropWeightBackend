@@ -1,10 +1,8 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using DropWeightBackend.Domain.Entities;
 using DropWeightBackend.Api.DTOs;
 
 
-namespace DropWeightBackend.Api.Services
+namespace DropWeightBackend.Api.Services.Interfaces
 {
     public interface IGeoSpatialService
     {

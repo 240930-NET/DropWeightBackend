@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 
-namespace DropWeight.Infrastructure.UnitOfWork
+namespace DropWeightBackend.Infrastructure.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {

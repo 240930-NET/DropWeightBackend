@@ -1,7 +1,8 @@
 using DropWeightBackend.Domain.Entities;
 using DropWeightBackend.Infrastructure.Repositories.Interfaces;
+using DropWeightBackend.Api.Services.Interfaces;
 
-namespace DropWeightBackend.Api.Services {
+namespace DropWeightBackend.Api.Services.Implementations {
     public class NutritionService : INutritionService {
 
         private readonly INutritionRepository _nutritionRepo;
@@ -9,9 +10,8 @@ namespace DropWeightBackend.Api.Services {
             _nutritionRepo = nutritionRepo;
         }
 
-        public async Task<Nutrition> GetNutritionById(int nutritionId) {
-            Nutrition nutrition = await _nutritionRepo.GetNutritionByIdAsync(nutritionId) 
-                            ?? throw new Exception("A nutrition with this id does not exist");
+        public async Task<Nutrition?> GetNutritionByIdAsync(int nutritionId) {
+            Nutrition? nutrition = await _nutritionRepo.GetNutritionByIdAsync(nutritionId);
             return nutrition;
         }
         public async Task<IEnumerable<Nutrition>> GetAllNutritionsAsync() {

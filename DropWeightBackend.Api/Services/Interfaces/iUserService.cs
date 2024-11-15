@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DropWeight.Domain.Entities;
+using DropWeightBackend.Domain.Entities;
 
-namespace DropWeight.Services
+namespace DropWeightBackend.Api.Services.Interfaces
 {
     public interface IUserService
     {

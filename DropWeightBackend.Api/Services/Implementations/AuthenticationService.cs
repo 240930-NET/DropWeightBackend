@@ -1,13 +1,12 @@
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using DropWeightBackend.Domain.Entities;
-using DropWeightBackend.Infrastructure.Repositories;
+using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 using Microsoft.IdentityModel.Tokens;
+using DropWeightBackend.Api.Services.Interfaces;
 
-namespace DropWeightBackend.Services
+namespace DropWeightBackend.Api.Services.Implementations
 {
     public class AuthenticationService : IAuthenticationService
     {
@@ -71,7 +70,7 @@ namespace DropWeightBackend.Services
             return tokenHandler.WriteToken(token);
         }
 
-        private string GenerateSalt()
+        private static string GenerateSalt()
         {
             using (var rng = new System.Security.Cryptography.RNGCryptoServiceProvider())
             {
@@ -81,7 +80,7 @@ namespace DropWeightBackend.Services
             }
         }
 
-        private string HashPassword(string password, string salt)
+        private static string HashPassword(string password, string salt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512(Convert.FromBase64String(salt)))
             {

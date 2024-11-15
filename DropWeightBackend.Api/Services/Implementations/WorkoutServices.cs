@@ -1,11 +1,10 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using DropWeightBackend.Api.Services.Interfaces;
 using DropWeightBackend.Domain.Entities;
 using DropWeightBackend.Domain.Enums;
 using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 using DropWeightBackend.Api.DTOs;
 
-namespace DropWeightBackend.Api.Services
+namespace DropWeightBackend.Api.Services.Implementations
 {
     public class WorkoutService : IWorkoutService
     {
