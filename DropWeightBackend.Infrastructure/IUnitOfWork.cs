@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using DropWeight.Domain.Repositories;
+using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 
 namespace DropWeight.Infrastructure.UnitOfWork
 {
