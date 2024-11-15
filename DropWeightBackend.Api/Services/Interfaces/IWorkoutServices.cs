@@ -1,17 +1,17 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using DropWeightBackend.Domain.Entities;
 using DropWeightBackend.Domain.Enums;
+using DropWeightBackend.Api.DTOs;
 
-namespace DropWeightBackend.Api.Services
+namespace DropWeightBackend.Api.Services.Interfaces
 {
     public interface IWorkoutService
     {
-        Task<Workout> GetWorkoutByIdAsync(int workoutId);
-        Task<IEnumerable<Workout>> GetAllWorkoutsAsync();
-        Task<IEnumerable<Workout>> GetWorkoutsByTypeAsync(WorkoutType type);
-        Task AddWorkoutAsync(Workout workout);
-        Task UpdateWorkoutAsync(Workout workout);
+        Task<WorkoutDto> GetWorkoutByIdAsync(int workoutId);
+        Task<IEnumerable<WorkoutDto>> GetAllWorkoutsAsync();
+        Task<IEnumerable<WorkoutDto>> GetWorkoutsByTypeAsync(WorkoutType type);
+        Task AddWorkoutAsync(CreateWorkoutDto dto);
+        Task UpdateWorkoutAsync(UpdateWorkoutDto dto);
         Task DeleteWorkoutAsync(int workoutId);
     }
 }
+

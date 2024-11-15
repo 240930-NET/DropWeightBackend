@@ -34,7 +34,7 @@ namespace DropWeightBackend.Infrastructure.Repositories.Implementations
                 .FirstOrDefaultAsync(u => u.Username == username);  
         }
 
-        public async Task<IEnumerable<User>> GetAllUserAsync()
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
             return await _context.Users
                 .Include(u => u.Workouts)

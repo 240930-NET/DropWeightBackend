@@ -1,7 +1,7 @@
-using DropWeight.Infrastructure.Data;
-using DropWeight.Domain.Entities;
-using DropWeight.Domain.Repositories;
-using DropWeight.Infrastructure.Repositories;
+using DropWeightBackend.Infrastructure.Data;
+using DropWeightBackend.Domain.Entities;
+using DropWeightBackend.Infrastructure.Repositories.Interfaces;
+using DropWeightBackend.Infrastructure.Repositories.Implementations;
 
 namespace DropWeight.Infrastructure.UnitOfWork
 {
