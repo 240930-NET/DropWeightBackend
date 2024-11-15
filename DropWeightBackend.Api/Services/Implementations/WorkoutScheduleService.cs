@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using DropWeightBackend.Domain.Entities;
 using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 
-namespace DropWeightBackend.Services
+namespace DropWeightBackend.Api.Services
 {
     public class WorkoutScheduleService : IWorkoutScheduleService
     {
