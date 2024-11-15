@@ -6,7 +6,7 @@ public interface IGoalRepository {
 
     public Task<List<Goal>> GetAllGoals();
 
-    public Task<Goal> GetGoalById(int id);
+    public Task<Goal?> GetGoalById(int id);
 
     public Task<Goal> AddGoal(Goal goal);
 
