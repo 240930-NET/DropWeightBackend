@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using DropWeightBackend.Domain.Entities;
 
-namespace DropWeightBackend.Services
+namespace DropWeightBackend.Api.Services.Interfaces
 {
     public interface IWorkoutScheduleService
     {
