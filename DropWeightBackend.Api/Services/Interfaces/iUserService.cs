@@ -9,6 +9,5 @@ namespace DropWeightBackend.Api.Services.Interfaces
         Task AddUserAsync(User user);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(int userId);
-        Task<User> AuthenticateUserAsync(string username, string password);
     }
 }

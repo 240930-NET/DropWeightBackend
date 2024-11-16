@@ -6,6 +6,7 @@ using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using DropWeightBackend.Api.Services.Interfaces;
 
+
 namespace DropWeightBackend.Api.Services.Implementations
 {
     public class AuthenticationService : IAuthenticationService
@@ -36,7 +37,7 @@ namespace DropWeightBackend.Api.Services.Implementations
             {
                 throw new ArgumentException("Username, password, first name, and last name cannot be empty.");
             }
-            
+            user.WorkoutSchedules ??= new List<WorkoutSchedule>();
             user.PasswordSalt = GenerateSalt();
             user.PasswordHash = HashPassword(password, user.PasswordSalt);
             await _userRepository.AddUserAsync(user);

@@ -38,15 +38,6 @@ namespace DropWeightBackend.Api.Services.Implementations
             await _userRepository.DeleteUserAsync(userId);
         }
 
-        public async Task<User> AuthenticateUserAsync(string username, string password)
-        {
-            var user = await _userRepository.GetUserByUsernameAsync(username);
-            if (user != null && VerifyPassword(user, password))
-            {
-                return user;
-            }
-            return null;
-        }
 
         private bool VerifyPassword(User user, string password)
         {
