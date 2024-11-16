@@ -2,7 +2,6 @@ using DropWeightBackend.Domain.Entities;
 using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 using DropWeightBackend.Api.Services.Interfaces;
 
-
 namespace DropWeightBackend.Api.Services.Implementations
 
 {

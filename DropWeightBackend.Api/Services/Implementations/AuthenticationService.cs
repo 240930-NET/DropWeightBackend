@@ -8,7 +8,6 @@ using DropWeightBackend.Api.Services.Interfaces;
 
 namespace DropWeightBackend.Api.Services.Implementations
 
-{
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IUserRepository _userRepository;
