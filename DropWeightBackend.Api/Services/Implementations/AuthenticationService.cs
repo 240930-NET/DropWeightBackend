@@ -2,27 +2,27 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using DropWeightBackend.Domain.Entities;
-using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using DropWeightBackend.Api.Services.Interfaces;
+using DropWeightBackend.Infrastructure.UnitOfWork;
 
 
 namespace DropWeightBackend.Api.Services.Implementations
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly string _jwtSecretKey;
 
-        public AuthenticationService(IUserRepository userRepository, string jwtSecretKey)
+        public AuthenticationService(IUnitOfWork unitOfWork, string jwtSecretKey)
         {
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
             _jwtSecretKey = jwtSecretKey;
         }
 
         public async Task<string> AuthenticateUserAsync(string username, string password)
         {
-            var user = await _userRepository.GetUserByUsernameAsync(username);
+            var user = await _unitOfWork.Users.GetUserByUsernameAsync(username);
             if (user != null && VerifyPassword(user, password))
             {
                 return GenerateJwtToken(user);
@@ -40,7 +40,9 @@ namespace DropWeightBackend.Api.Services.Implementations
             user.WorkoutSchedules ??= new List<WorkoutSchedule>();
             user.PasswordSalt = GenerateSalt();
             user.PasswordHash = HashPassword(password, user.PasswordSalt);
-            await _userRepository.AddUserAsync(user);
+            
+            await _unitOfWork.Users.AddUserAsync(user);
+            await _unitOfWork.CompleteAsync(); // Commit changes to the database
             return true;
         }
 

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using DropWeightBackend.Domain.Entities;
-using DropWeightBackend.Api.Services;
+using DropWeightBackend.Api.Services.Interfaces;
 using DropWeightBackend.Api.DTOs;
 
 namespace DropWeightBackend.Api.Controllers

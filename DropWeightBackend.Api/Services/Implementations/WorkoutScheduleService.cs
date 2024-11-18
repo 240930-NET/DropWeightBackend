@@ -1,41 +1,44 @@
 using DropWeightBackend.Domain.Entities;
-using DropWeightBackend.Infrastructure.Repositories.Interfaces;
+using DropWeightBackend.Infrastructure.UnitOfWork;
 using DropWeightBackend.Api.Services.Interfaces;
 
 namespace DropWeightBackend.Api.Services.Implementations
 {
     public class WorkoutScheduleService : IWorkoutScheduleService
     {
-        private readonly IWorkoutScheduleRepository _workoutScheduleRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public WorkoutScheduleService(IWorkoutScheduleRepository workoutScheduleRepository)
+        public WorkoutScheduleService(IUnitOfWork unitOfWork)
         {
-            _workoutScheduleRepository = workoutScheduleRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IEnumerable<WorkoutSchedule>> GetSchedulesForUserAsync(int userId)
         {
-            return await _workoutScheduleRepository.GetSchedulesForUserAsync(userId);
+            return await _unitOfWork.WorkoutSchedules.GetSchedulesForUserAsync(userId);
         }
 
         public async Task<WorkoutSchedule?> GetScheduleByIdAsync(int scheduleId)
         {
-            return await _workoutScheduleRepository.GetScheduleByIdAsync(scheduleId);
+            return await _unitOfWork.WorkoutSchedules.GetScheduleByIdAsync(scheduleId);
         }
 
         public async Task AddScheduleAsync(WorkoutSchedule workoutSchedule)
         {
-            await _workoutScheduleRepository.AddScheduleAsync(workoutSchedule);
+            await _unitOfWork.WorkoutSchedules.AddScheduleAsync(workoutSchedule);
+            await _unitOfWork.CompleteAsync(); // Save changes
         }
 
         public async Task UpdateScheduleAsync(WorkoutSchedule workoutSchedule)
         {
-            await _workoutScheduleRepository.UpdateScheduleAsync(workoutSchedule);
+            await _unitOfWork.WorkoutSchedules.UpdateScheduleAsync(workoutSchedule);
+            await _unitOfWork.CompleteAsync(); // Save changes
         }
 
         public async Task DeleteScheduleAsync(int scheduleId)
         {
-            await _workoutScheduleRepository.DeleteScheduleAsync(scheduleId);
+            await _unitOfWork.WorkoutSchedules.DeleteScheduleAsync(scheduleId);
+            await _unitOfWork.CompleteAsync(); // Save changes
         }
     }
 }

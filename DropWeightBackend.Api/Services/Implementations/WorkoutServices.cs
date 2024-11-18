@@ -1,35 +1,35 @@
 using DropWeightBackend.Api.Services.Interfaces;
 using DropWeightBackend.Domain.Entities;
 using DropWeightBackend.Domain.Enums;
-using DropWeightBackend.Infrastructure.Repositories.Interfaces;
+using DropWeightBackend.Infrastructure.UnitOfWork;
 using DropWeightBackend.Api.DTOs;
 
 namespace DropWeightBackend.Api.Services.Implementations
 {
     public class WorkoutService : IWorkoutService
     {
-        private readonly IWorkoutRepository _workoutRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public WorkoutService(IWorkoutRepository workoutRepository)
+        public WorkoutService(IUnitOfWork unitOfWork)
         {
-            _workoutRepository = workoutRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<WorkoutDto> GetWorkoutByIdAsync(int workoutId)
         {
-            var workout = await _workoutRepository.GetWorkoutByIdAsync(workoutId);
+            var workout = await _unitOfWork.Workouts.GetWorkoutByIdAsync(workoutId);
             return workout == null ? null : MapToDto(workout);
         }
 
         public async Task<IEnumerable<WorkoutDto>> GetAllWorkoutsAsync()
         {
-            var workouts = await _workoutRepository.GetAllWorkoutsAsync();
+            var workouts = await _unitOfWork.Workouts.GetAllWorkoutsAsync();
             return workouts.Select(MapToDto);
         }
 
         public async Task<IEnumerable<WorkoutDto>> GetWorkoutsByTypeAsync(WorkoutType type)
         {
-            var workouts = await _workoutRepository.GetWorkoutsByTypeAsync(type);
+            var workouts = await _unitOfWork.Workouts.GetWorkoutsByTypeAsync(type);
             return workouts.Select(MapToDto);
         }
 
@@ -40,26 +40,32 @@ namespace DropWeightBackend.Api.Services.Implementations
                 StartTime = dto.StartTime,
                 EndTime = dto.EndTime,
                 Type = dto.Type,
-                Reps = dto.Reps
+                Reps = dto.Reps,
+                User = await _unitOfWork.Users.GetUserByIdAsync(dto.UserId),
+                UserId = dto.UserId
             };
-            await _workoutRepository.AddWorkoutAsync(workout);
+            await _unitOfWork.Workouts.AddWorkoutAsync(workout);
+            await _unitOfWork.CompleteAsync(); // Save changes
         }
 
         public async Task UpdateWorkoutAsync(UpdateWorkoutDto dto)
         {
-            var workout = await _workoutRepository.GetWorkoutByIdAsync(dto.WorkoutId);
+            var workout = await _unitOfWork.Workouts.GetWorkoutByIdAsync(dto.WorkoutId);
             if (workout == null) return;
 
             workout.StartTime = dto.StartTime;
             workout.EndTime = dto.EndTime;
             workout.Type = dto.Type;
             workout.Reps = dto.Reps;
-            await _workoutRepository.UpdateWorkoutAsync(workout);
+
+            await _unitOfWork.Workouts.UpdateWorkoutAsync(workout);
+            await _unitOfWork.CompleteAsync(); // Save changes
         }
 
         public async Task DeleteWorkoutAsync(int workoutId)
         {
-            await _workoutRepository.DeleteWorkoutAsync(workoutId);
+            await _unitOfWork.Workouts.DeleteWorkoutAsync(workoutId);
+            await _unitOfWork.CompleteAsync(); // Save changes
         }
 
         private WorkoutDto MapToDto(Workout workout)

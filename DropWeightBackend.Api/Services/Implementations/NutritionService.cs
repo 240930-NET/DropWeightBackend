@@ -1,30 +1,45 @@
 using DropWeightBackend.Domain.Entities;
-using DropWeightBackend.Infrastructure.Repositories.Interfaces;
+using DropWeightBackend.Infrastructure.UnitOfWork;
 using DropWeightBackend.Api.Services.Interfaces;
 
-namespace DropWeightBackend.Api.Services.Implementations {
-    public class NutritionService : INutritionService {
+namespace DropWeightBackend.Api.Services.Implementations
+{
+    public class NutritionService : INutritionService
+    {
+        private readonly IUnitOfWork _unitOfWork;
 
-        private readonly INutritionRepository _nutritionRepo;
-        public NutritionService (INutritionRepository nutritionRepo) {
-            _nutritionRepo = nutritionRepo;
+        public NutritionService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
         }
 
-        public async Task<Nutrition?> GetNutritionByIdAsync(int nutritionId) {
-            Nutrition? nutrition = await _nutritionRepo.GetNutritionByIdAsync(nutritionId);
+        public async Task<Nutrition?> GetNutritionByIdAsync(int nutritionId)
+        {
+            Nutrition? nutrition = await _unitOfWork.Nutritions.GetNutritionByIdAsync(nutritionId);
             return nutrition;
         }
-        public async Task<IEnumerable<Nutrition>> GetAllNutritionsAsync() {
-            return await _nutritionRepo.GetAllNutritionsAsync();
+
+        public async Task<IEnumerable<Nutrition>> GetAllNutritionsAsync()
+        {
+            return await _unitOfWork.Nutritions.GetAllNutritionsAsync();
         }
-        public async Task AddNutritionAsync(Nutrition nutrition) {
-            await _nutritionRepo.AddNutritionAsync(nutrition);
+
+        public async Task AddNutritionAsync(Nutrition nutrition)
+        {
+            await _unitOfWork.Nutritions.AddNutritionAsync(nutrition);
+            await _unitOfWork.CompleteAsync(); // Save changes
         }
-        public async Task UpdateNutritionAsync(Nutrition nutrition) {
-            await _nutritionRepo.UpdateNutritionAsync(nutrition);
+
+        public async Task UpdateNutritionAsync(Nutrition nutrition)
+        {
+            await _unitOfWork.Nutritions.UpdateNutritionAsync(nutrition);
+            await _unitOfWork.CompleteAsync(); // Save changes
         }
-        public async Task DeleteNutritionAsync(int nutritionId) {
-            await _nutritionRepo.DeleteNutritionAsync(nutritionId);
+
+        public async Task DeleteNutritionAsync(int nutritionId)
+        {
+            await _unitOfWork.Nutritions.DeleteNutritionAsync(nutritionId);
+            await _unitOfWork.CompleteAsync(); // Save changes
         }
     }
 }

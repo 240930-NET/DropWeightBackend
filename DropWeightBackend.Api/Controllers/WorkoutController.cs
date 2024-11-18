@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DropWeightBackend.Api.DTOs;
 using DropWeightBackend.Domain.Enums;
-using DropWeightBackend.Api.Services;
+using DropWeightBackend.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DropWeightBackend.Api.Controllers
