@@ -3,37 +3,32 @@ using DropWeightBackend.Domain.Entities;
 using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 using DropWeightBackend.Infrastructure.Repositories.Implementations;
 
-namespace DropWeight.Infrastructure.UnitOfWork
+namespace DropWeightBackend.Infrastructure.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly DropWeightContext _context;
 
         // Repositories
-        //public IStudentRepository Students { get; }
-        /*public IClassRepository Classes { get; }
-        public IAssignmentRepository Assignments { get; }
-        public IGradeRepository Grades { get; }
-        public IUserRepository Users { get; }
-        public IInstitutionRepository Institutions { get; }*/
-
         public IWorkoutRepository Workouts { get; }
         public IGeoSpatialRepository GeoSpatials { get; }
+        public IUserRepository Users { get; }
+        public INutritionRepository Nutritions { get; }
+        public IWorkoutScheduleRepository WorkoutSchedules { get; }
+        public IGoalRepository Goals { get; }
 
         public UnitOfWork(DropWeightContext context)
         {
             _context = context;
 
             // Initialize repositories
-            //Students = new StudentRepository(_context);
-            /*Classes = new ClassRepository(_context);
-            Assignments = new AssignmentRepository(_context);
-            Grades = new GradeRepository(_context);
-            Users = new UserRepository(_context);
-            Institutions = new InstitutionRepository(_context);*/
 
             Workouts = new WorkoutRepository(_context);
             GeoSpatials = new GeoSpatialRepository(_context);
+            Users = new UserRepository(_context);
+            Nutritions = new NutritionRepository(_context);
+            WorkoutSchedules = new WorkoutScheduleRepository(_context);
+            Goals = new GoalRepository(context);
         }
 
         public async Task<int> CompleteAsync()

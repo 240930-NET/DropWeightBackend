@@ -9,6 +9,10 @@ namespace DropWeightBackend.Infrastructure.UnitOfWork
         // Repositories
         IWorkoutRepository Workouts { get; }
         IGeoSpatialRepository GeoSpatials { get; }
+        IUserRepository Users { get; }
+        INutritionRepository Nutritions { get; }
+        IWorkoutScheduleRepository WorkoutSchedules { get; }
+        IGoalRepository Goals { get; }
 
         // Commit changes
         Task<int> CompleteAsync();

@@ -24,6 +24,8 @@ namespace DropWeightBackend.Domain.Entities
         public int UserId {get; set;} //FK
         [JsonIgnore]
         public required User User {get; set;} //Navigation Property
+
+        public WorkoutSchedule WorkoutSchedule { get; set; }
         public Workout() {
             GeoSpatials = new HashSet<GeoSpatial>();
         }

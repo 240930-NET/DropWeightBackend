@@ -14,6 +14,7 @@ namespace DropWeightBackend.Infrastructure.Data
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<GeoSpatial> GeoSpatials { get; set; }
         public DbSet<Goal> Goals { get; set; }
+        public DbSet<WorkoutSchedule> WorkoutSchedules { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,6 +43,13 @@ namespace DropWeightBackend.Infrastructure.Data
                 .HasOne(g => g.User)
                 .WithMany(u => u.Goals)
                 .HasForeignKey(g => g.UserId);
+
+            modelBuilder.Entity<WorkoutSchedule>()
+                .HasOne(ws => ws.Workout)
+                .WithOne(w => w.WorkoutSchedule)
+                .HasForeignKey<WorkoutSchedule>(ws => ws.WorkoutId)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }
