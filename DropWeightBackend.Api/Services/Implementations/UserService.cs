@@ -13,7 +13,7 @@ namespace DropWeightBackend.Api.Services.Implementations
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<User> GetUserByIdAsync(int userId)
+        public async Task<User?> GetUserByIdAsync(int userId)
         {
             return await _unitOfWork.Users.GetUserByIdAsync(userId);
         }
@@ -25,18 +25,33 @@ namespace DropWeightBackend.Api.Services.Implementations
 
         public async Task AddUserAsync(User user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
             await _unitOfWork.Users.AddUserAsync(user);
             await _unitOfWork.CompleteAsync(); // Save changes
         }
 
         public async Task UpdateUserAsync(User user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
             await _unitOfWork.Users.UpdateUserAsync(user);
             await _unitOfWork.CompleteAsync(); // Save changes
         }
 
         public async Task DeleteUserAsync(int userId)
         {
+            if (userId <= 0)
+            {
+                throw new ArgumentException("User ID must be positive", nameof(userId));
+            }
+
             await _unitOfWork.Users.DeleteUserAsync(userId);
             await _unitOfWork.CompleteAsync(); // Save changes
         }

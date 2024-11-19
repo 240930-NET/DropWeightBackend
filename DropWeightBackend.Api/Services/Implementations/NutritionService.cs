@@ -26,12 +26,22 @@ namespace DropWeightBackend.Api.Services.Implementations
 
         public async Task AddNutritionAsync(Nutrition nutrition)
         {
+            if (nutrition == null)
+            {
+                throw new ArgumentNullException(nameof(nutrition));
+            }
+            
             await _unitOfWork.Nutritions.AddNutritionAsync(nutrition);
             await _unitOfWork.CompleteAsync(); // Save changes
         }
 
         public async Task UpdateNutritionAsync(Nutrition nutrition)
         {
+            if (nutrition == null)
+            {
+                throw new ArgumentNullException(nameof(nutrition));
+            }
+
             await _unitOfWork.Nutritions.UpdateNutritionAsync(nutrition);
             await _unitOfWork.CompleteAsync(); // Save changes
         }
