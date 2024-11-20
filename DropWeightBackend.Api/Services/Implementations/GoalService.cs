@@ -59,7 +59,7 @@ namespace DropWeightBackend.Api.Services.Implementations
             }
             else
             {
-                if (string.IsNullOrEmpty(goalDTO.Description) || string.IsNullOrEmpty(goalDTO.GoalName))
+                if (string.IsNullOrEmpty(goalDTO.Description) && string.IsNullOrEmpty(goalDTO.GoalName))
                 {
                     throw new Exception("Must enter either a description or name for a custom goal type");
                 }
@@ -113,7 +113,7 @@ namespace DropWeightBackend.Api.Services.Implementations
             }
             else
             {
-                if (string.IsNullOrEmpty(goalDTO.Description) || string.IsNullOrEmpty(goalDTO.GoalName))
+                if (string.IsNullOrEmpty(goalDTO.Description) && string.IsNullOrEmpty(goalDTO.GoalName))
                 {
                     throw new Exception("Must enter either a description or name for a custom goal type");
                 }
