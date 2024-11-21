@@ -9,8 +9,6 @@ namespace DropWeightBackend.Domain.Entities
         [Key]
         public int NutritionId {get; set; }
         [Required]
-        [DataType(DataType.Date)]
-        [Column(TypeName = "Date")]
         public DateTime Date { get; set; }
         
         //I made the nutrition following the api output from this api: https://calorieninjas.com/
@@ -32,7 +30,7 @@ namespace DropWeightBackend.Domain.Entities
         [Required]
         public int UserId {get; set;} //FK
         [JsonIgnore]
-        public required User User {get; set;} //Navigation property (not sure we need it but its here)
+        public User? User {get; set;} //Navigation property (not sure we need it but its here)
 
     }
 }

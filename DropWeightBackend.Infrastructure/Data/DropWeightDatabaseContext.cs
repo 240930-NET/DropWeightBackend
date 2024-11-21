@@ -21,10 +21,11 @@ namespace DropWeightBackend.Infrastructure.Data
             base.OnModelCreating(modelBuilder);
 
             // One User to many Nutrition
-            modelBuilder.Entity<Nutrition>()
+            /*modelBuilder.Entity<Nutrition>()
                 .HasOne(n => n.User)
                 .WithMany(u => u.Nutritions)
-                .HasForeignKey(n => n.UserId);
+                .HasForeignKey(n => n.UserId)
+                .IsRequired();*/
 
             // One User to may Workout
             modelBuilder.Entity<Workout>()

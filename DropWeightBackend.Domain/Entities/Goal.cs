@@ -26,6 +26,6 @@ public class Goal {
     public int UserId {get; set;}
 
     [JsonIgnore]
-    public User User {get; set;} //Navigation Property
+    public User? User {get; set;} //Navigation Property
 
 }

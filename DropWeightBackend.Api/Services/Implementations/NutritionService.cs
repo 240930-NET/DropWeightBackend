@@ -24,23 +24,20 @@ namespace DropWeightBackend.Api.Services.Implementations
             return await _unitOfWork.Nutritions.GetAllNutritionsAsync();
         }
 
+        public async Task<IEnumerable<Nutrition>> GetNutritionsByUserIdAsync(int userId) {
+            return await _unitOfWork.Nutritions.GetNutritionsByUserIdAsync(userId);
+        }
+
         public async Task AddNutritionAsync(Nutrition nutrition)
         {
-            if (nutrition == null)
-            {
-                throw new ArgumentNullException(nameof(nutrition));
-            }
-            
+            ArgumentNullException.ThrowIfNull(nutrition);
             await _unitOfWork.Nutritions.AddNutritionAsync(nutrition);
             await _unitOfWork.CompleteAsync(); // Save changes
         }
 
         public async Task UpdateNutritionAsync(Nutrition nutrition)
         {
-            if (nutrition == null)
-            {
-                throw new ArgumentNullException(nameof(nutrition));
-            }
+            ArgumentNullException.ThrowIfNull(nutrition);
 
             await _unitOfWork.Nutritions.UpdateNutritionAsync(nutrition);
             await _unitOfWork.CompleteAsync(); // Save changes

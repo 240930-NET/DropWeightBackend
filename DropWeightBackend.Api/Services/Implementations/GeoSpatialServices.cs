@@ -6,7 +6,7 @@ using DropWeightBackend.Domain.Entities;
 using DropWeightBackend.Api.Services.Interfaces;
 using DropWeightBackend.Infrastructure.UnitOfWork;
 
-namespace DropWeightBackend.Api.Services
+namespace DropWeightBackend.Api.Services.Implementations
 {
     public class GeoSpatialService : IGeoSpatialService
     {

@@ -17,9 +17,8 @@ namespace DropWeightBackend.Domain.Entities
         [Required]
         public int WorkoutId {get; set; } //FK
         [JsonIgnore]
-        public required Workout Workout {get; set;} //Navigation Property
+        public Workout? Workout {get; set;} //Navigation Property
 
-        public GeoSpatial() {}
         
     }
 }

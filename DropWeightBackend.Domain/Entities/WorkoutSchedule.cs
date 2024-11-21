@@ -10,9 +10,9 @@ namespace DropWeightBackend.Domain.Entities
         public DateTime EndTime { get; set; }
 
         public int WorkoutId { get; set; }
-        public Workout Workout { get; set; }
+        public Workout? Workout { get; set; }
 
         public int UserId { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using DropWeightBackend.Api.Services.Interfaces;
 using DropWeightBackend.Api.Services.Implementations;
 using DropWeightBackend.Infrastructure.Data;
 using DropWeightBackend.Infrastructure.UnitOfWork;
+using DropWeightBackend.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,6 +69,13 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationService>(provid
 });
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<INutritionService, NutritionService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IWorkoutScheduleService, WorkoutScheduleService>();
+builder.Services.AddScoped<IWorkoutService, WorkoutService>();
+builder.Services.AddScoped<IGoalService, GoalService>();
+builder.Services.AddScoped<IGeoSpatialService, GeoSpatialService>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

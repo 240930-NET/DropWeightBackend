@@ -19,16 +19,16 @@ namespace DropWeightBackend.Domain.Entities
         [Required]
         public WorkoutType Type { get; set; }
         public int Reps { get; set; }
-        public ICollection<GeoSpatial> GeoSpatials { get; set;}
+        public ICollection<GeoSpatial> GeoSpatials { get; set;} = new HashSet<GeoSpatial>();
 
         public int UserId {get; set;} //FK
         [JsonIgnore]
-        public required User User {get; set;} //Navigation Property
+        public User? User {get; set;} //Navigation Property
 
-        public WorkoutSchedule WorkoutSchedule { get; set; }
-        public Workout() {
-            GeoSpatials = new HashSet<GeoSpatial>();
-        }
+        public WorkoutSchedule? WorkoutSchedule { get; set; }
+        //public Workout() {
+        //    GeoSpatials = new HashSet<GeoSpatial>();
+        //}
         
     }
 }
