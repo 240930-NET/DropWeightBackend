@@ -5,6 +5,7 @@ using DropWeightBackend.Domain.Entities;
 using DropWeightBackend.Infrastructure.UnitOfWork;
 using DropWeightBackend.Infrastructure.Repositories.Interfaces;
 using DropWeightBackend.Api.DTOs;
+using DropWeightBackend.Api.Services.Implementations;
 
 namespace DropWeightBackend.Tests
 {

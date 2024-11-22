@@ -215,5 +215,58 @@ namespace DropWeightBackend.Tests
             await Assert.ThrowsAsync<ArgumentNullException>(() =>
                 _nutritionService.UpdateNutritionAsync(nullNutrition!));
         }
+
+        [Fact]
+        public async Task GetNutritionsByUserIdAsync_ShouldReturnUserNutritions()
+        {
+            // Arrange
+            var userId = 1;
+            var expectedNutritions = new List<Nutrition>
+            {
+                new Nutrition 
+                { 
+                    NutritionId = 1, 
+                    Calories = 2000, 
+                    Description = "Description 1", 
+                    User = _testUser,
+                    UserId = userId
+                },
+                new Nutrition 
+                { 
+                    NutritionId = 2, 
+                    Calories = 2500,
+                    Description = "Description 2",
+                    User = _testUser,
+                    UserId = userId
+                }
+            };
+
+            _mockNutritionRepository.Setup(repo => repo.GetNutritionsByUserIdAsync(userId))
+                .ReturnsAsync(expectedNutritions);
+
+            // Act
+            var result = await _nutritionService.GetNutritionsByUserIdAsync(userId);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(expectedNutritions.Count, result.Count());
+            Assert.All(result, nutrition => Assert.Equal(userId, nutrition.UserId));
+        }
+
+        [Fact]
+        public async Task GetNutritionsByUserIdAsync_ShouldReturnEmptyList_WhenNoNutritionsExist()
+        {
+            // Arrange
+            var userId = 999;
+            _mockNutritionRepository.Setup(repo => repo.GetNutritionsByUserIdAsync(userId))
+                .ReturnsAsync(new List<Nutrition>());
+
+            // Act
+            var result = await _nutritionService.GetNutritionsByUserIdAsync(userId);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Empty(result);
+        }
     }
 }
