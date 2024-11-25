@@ -18,6 +18,11 @@ namespace DropWeightBackend.Api.Services.Implementations
             return await _unitOfWork.Users.GetUserByIdAsync(userId);
         }
 
+        public async Task<User?> GetUserByUsernameAsync(string username)
+        {
+            return await _unitOfWork.Users.GetUserByUsernameAsync(username);
+        }
+
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
             return await _unitOfWork.Users.GetAllUsersAsync();
