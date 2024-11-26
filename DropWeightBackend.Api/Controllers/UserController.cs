@@ -28,6 +28,18 @@ namespace DropWeightBackend.Api.Controllers
             return Ok(user);
         }
 
+        [HttpGet("username/{username}")]
+        public async Task<IActionResult> GetUserByUsername(string username)
+        {
+            var user = await _userService.GetUserByUsernameAsync(username);
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+            return Ok(user);
+        }
+
+
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
