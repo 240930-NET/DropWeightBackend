@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DropWeightBackend.Api.Controllers {
 
-
+    [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
     public class GoalController : ControllerBase {
