@@ -9,7 +9,7 @@ namespace DropWeightBackend.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class GoalController : Controller {
+public class GoalController : ControllerBase {
 
     public readonly IGoalService _goalService;
 
