@@ -41,7 +41,7 @@ namespace DropWeightBackend.Api.Controllers
                 return Conflict("Registration failed. Username might already exist.");
             }
 
-            return Ok("User registered successfully.");
+            return Ok(user);
         }
 
         [HttpPost("login")]

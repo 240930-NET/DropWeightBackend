@@ -71,7 +71,6 @@ namespace DropWeightBackend.Api.Services.Implementations
         {
             return new GeoSpatialDto
             {
-                GeoSpatialId = geoSpatial.GeoSpatialId,
                 Latitude = geoSpatial.Latitude,
                 Longitude = geoSpatial.Longitude
             };

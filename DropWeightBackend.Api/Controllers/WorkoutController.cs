@@ -43,6 +43,8 @@ namespace DropWeightBackend.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddWorkout([FromBody] CreateWorkoutDto dto)
         {
+            var authHeader = Request.Headers["Authorization"];
+            Console.WriteLine($"Authorization Header: {authHeader}");
             if (!ModelState.IsValid) return BadRequest(ModelState);
             await _workoutService.AddWorkoutAsync(dto);
             return CreatedAtAction(nameof(GetWorkoutById), new { id = dto.UserId }, dto);

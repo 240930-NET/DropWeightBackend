@@ -12,5 +12,6 @@ namespace DropWeightBackend.Api.DTOs
         public WorkoutType Type { get; set; }
         public int Reps { get; set; }
         public List<GeoSpatialDto> GeoSpatials { get; set; }
+        public int UserId { get; set; }
     }
 }

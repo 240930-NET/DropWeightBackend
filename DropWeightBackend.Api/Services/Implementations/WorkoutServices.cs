@@ -77,9 +77,9 @@ namespace DropWeightBackend.Api.Services.Implementations
                 EndTime = workout.EndTime,
                 Type = workout.Type,
                 Reps = workout.Reps,
+                UserId = workout.UserId,
                 GeoSpatials = workout.GeoSpatials?.Select(g => new GeoSpatialDto
                 {
-                    GeoSpatialId = g.GeoSpatialId,
                     Latitude = g.Latitude,
                     Longitude = g.Longitude
                 }).ToList()
