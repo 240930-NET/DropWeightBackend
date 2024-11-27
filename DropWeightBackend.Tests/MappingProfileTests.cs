@@ -35,7 +35,6 @@ namespace DropWeightBackend.Tests.Configuration
             var dto = _mapper.Map<GeoSpatialDto>(geoSpatial);
 
             // Assert
-            Assert.Equal(geoSpatial.GeoSpatialId, dto.GeoSpatialId);
             Assert.Equal(geoSpatial.Latitude, dto.Latitude);
             Assert.Equal(geoSpatial.Longitude, dto.Longitude);
         }

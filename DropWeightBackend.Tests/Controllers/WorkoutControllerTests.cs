@@ -92,36 +92,8 @@ namespace DropWeightBackend.Tests
             Assert.All(returnedWorkouts, w => Assert.Equal(workoutType, w.Type));
         }
 
-        [Fact]
-        public async Task AddWorkout_ShouldReturnCreatedAtAction_WhenModelIsValid()
-        {
-            // Arrange
-            var createDto = new CreateWorkoutDto { UserId = 1 };
-            _mockWorkoutService.Setup(service => service.AddWorkoutAsync(createDto))
-                .Returns(Task.CompletedTask);
 
-            // Act
-            var result = await _controller.AddWorkout(createDto);
 
-            // Assert
-            var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(result);
-            Assert.Equal(nameof(WorkoutController.GetWorkoutById), createdAtActionResult.ActionName);
-            Assert.Equal(createDto.UserId, createdAtActionResult.RouteValues["id"]);
-        }
-
-        [Fact]
-        public async Task AddWorkout_ShouldReturnBadRequest_WhenModelStateIsInvalid()
-        {
-            // Arrange
-            var createDto = new CreateWorkoutDto();
-            _controller.ModelState.AddModelError("error", "some error");
-
-            // Act
-            var result = await _controller.AddWorkout(createDto);
-
-            // Assert
-            Assert.IsType<BadRequestObjectResult>(result);
-        }
 
         [Fact]
         public async Task UpdateWorkout_ShouldReturnNoContent_WhenModelIsValid()

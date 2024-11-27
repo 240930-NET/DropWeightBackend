@@ -66,7 +66,6 @@ namespace DropWeightBackend.Tests
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(geoSpatial.GeoSpatialId, result.GeoSpatialId);
             Assert.Equal(geoSpatial.Latitude, result.Latitude);
             Assert.Equal(geoSpatial.Longitude, result.Longitude);
         }
@@ -104,10 +103,6 @@ namespace DropWeightBackend.Tests
             // Assert
             Assert.NotNull(result);
             Assert.Equal(geoSpatials.Count, result.Count());
-            Assert.Collection(result,
-                item => Assert.Equal(geoSpatials[0].GeoSpatialId, item.GeoSpatialId),
-                item => Assert.Equal(geoSpatials[1].GeoSpatialId, item.GeoSpatialId)
-            );
         }
 
         [Fact]

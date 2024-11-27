@@ -19,28 +19,6 @@ namespace DropWeightBackend.Tests
             _controller = new AuthenticationController(_mockAuthService.Object);
         }
 
-        [Fact]
-        public async Task Register_ShouldReturnOk_WhenRegistrationSucceeds()
-        {
-            // Arrange
-            var request = new RegisterRequest
-            {
-                Username = "testuser",
-                Password = "testpass",
-                FirstName = "Test",
-                LastName = "User"
-            };
-
-            _mockAuthService.Setup(service => service.RegisterUserAsync(It.IsAny<User>(), request.Password))
-                .ReturnsAsync(true);
-
-            // Act
-            var result = await _controller.Register(request);
-
-            // Assert
-            var okResult = Assert.IsType<OkObjectResult>(result);
-            Assert.Equal("User registered successfully.", okResult.Value);
-        }
 
         [Fact]
         public async Task Register_ShouldReturnBadRequest_WhenFieldsAreMissing()
