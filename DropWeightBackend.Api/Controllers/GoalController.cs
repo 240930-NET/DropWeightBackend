@@ -18,7 +18,7 @@ public class GoalController : Controller {
     }
 
 
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     public async Task<IActionResult> GetAllGoals() {
 
@@ -31,7 +31,7 @@ public class GoalController : Controller {
     }
 
     
-    [Authorize]
+    //[Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetGoalById(int id) {
         try {
@@ -48,7 +48,7 @@ public class GoalController : Controller {
     }
 
 
-    [Authorize]
+    //[Authorize]
     [HttpPost]
     public async Task<IActionResult> AddGoal([FromBody] GoalDto goalDTO) {
 
@@ -63,7 +63,7 @@ public class GoalController : Controller {
     }
 
 
-    [Authorize]
+    //[Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateGoal([FromBody] GoalDto goalDTO, int id) {
         try {
