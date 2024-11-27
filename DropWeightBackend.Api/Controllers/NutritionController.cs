@@ -16,7 +16,7 @@ namespace DropWeightBackend.Api.Controllers
             _nutritionService = nutritionService;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Nutrition>>> GetAllNutrition()
         {
@@ -24,7 +24,7 @@ namespace DropWeightBackend.Api.Controllers
             return Ok(nutritions);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Nutrition>> GetNutritionById(int id)
         {
@@ -36,7 +36,7 @@ namespace DropWeightBackend.Api.Controllers
             return Ok(nutrition);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("user/{id}")]
         public async Task<ActionResult<IEnumerable<Nutrition>>> GetAllNutrition(int id)
         {
@@ -44,7 +44,7 @@ namespace DropWeightBackend.Api.Controllers
             return Ok(nutritions);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Nutrition>> CreateNutrition([FromBody] Nutrition nutrition)
         {
@@ -60,7 +60,7 @@ namespace DropWeightBackend.Api.Controllers
             return Ok();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteNutrition(int id)
         {
