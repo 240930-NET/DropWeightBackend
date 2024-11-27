@@ -18,7 +18,7 @@ public class GoalController : Controller {
     }
 
 
-    [Authorize]
+ //   [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetAllGoals() {
 
@@ -48,20 +48,22 @@ public class GoalController : Controller {
     }
 
 
-    [Authorize]
+   // [Authorize]
     [HttpPost]
     public async Task<IActionResult> AddGoal([FromBody] GoalDto goalDTO) {
+
         try {
             await _goalService.AddGoal(goalDTO);
             return Ok(goalDTO);
         }
         catch(Exception e) {
+            Console.WriteLine("catch:" + goalDTO);
             return BadRequest(e.Message);
         }
     }
 
 
-    [Authorize]
+  //  [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateGoal([FromBody] GoalDto goalDTO, int id) {
         try {
@@ -74,7 +76,7 @@ public class GoalController : Controller {
     }
 
 
-    [Authorize]
+ //   [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteGoal(int id) {
         try {

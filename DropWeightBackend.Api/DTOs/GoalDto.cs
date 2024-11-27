@@ -13,4 +13,5 @@ public class GoalDto {
     public double? StartingValue { get; set; }
     public double? TargetValue { get; set; }
     public double? CurrentValue { get; set; }
+    public int UserId {get; set; }
 }

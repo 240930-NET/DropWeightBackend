@@ -79,6 +79,7 @@ namespace DropWeightBackend.Api.Services.Implementations
             goal.StartingValue = goalDTO.StartingValue;
             goal.TargetValue = goalDTO.TargetValue;
             goal.CurrentValue = goalDTO.CurrentValue;
+            goal.UserId = goalDTO.UserId;
 
             var addedGoal = await _unitOfWork.Goals.AddGoal(goal);
             await _unitOfWork.CompleteAsync(); // Save changes
